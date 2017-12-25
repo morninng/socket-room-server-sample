@@ -24,3 +24,21 @@ app.get('/', function (req, res) {
 });
 
 
+
+const io = require('socket.io').listen(server);
+io.sockets.setMaxListeners(Infinity);
+const mixidea_io = io.of('/mixidea')
+
+
+mixidea_io.on('connection',(socket)=>{
+    console.log("connected to mixidea");
+
+    socket.on('disconnect', function(){
+        console.log("disconnected socket id= " + socket.id);
+
+    });
+    
+
+});
+
+
