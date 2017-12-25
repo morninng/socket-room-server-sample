@@ -40,6 +40,16 @@ mixidea_io.on('connection',(socket_client)=>{
         socket_client.join(room_name);
     })
 
+    socket_client.on('leave-room', (room_name) => {
+        console.log('leave-room called ', room_name)
+        socket_client.leave(room_name);
+    })
+
+    socket_client.on('leave-all', (room_name) => {
+        console.log('leave-room called ', room_name)
+        socket_client.leaveAll();
+    })
+
     socket_client.on('disconnect', function(){
         console.log("disconnected socket id= " + socket_client.id);
         check_numberof_clients();
