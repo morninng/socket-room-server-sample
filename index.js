@@ -45,8 +45,8 @@ mixidea_io.on('connection',(socket_client)=>{
         socket_client.leave(room_name);
     })
 
-    socket_client.on('leave-all', (room_name) => {
-        console.log('leave-room called ', room_name)
+    socket_client.on('leave-all', (dummy) => {
+        console.log('leave-room all ')
         socket_client.leaveAll();
     })
 
