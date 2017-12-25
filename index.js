@@ -31,6 +31,7 @@ const mixidea_io = io.of('/mixidea')
 
 
 mixidea_io.on('connection',(socket_client)=>{
+    check_numberof_clients();
     console.log("connected to mixidea");
     socket_client.emit('connected');
 
@@ -41,11 +42,19 @@ mixidea_io.on('connection',(socket_client)=>{
 
     socket_client.on('disconnect', function(){
         console.log("disconnected socket id= " + socket_client.id);
-
+        check_numberof_clients();
     });
-    
-
 });
+
+
+function check_numberof_clients() {
+
+    mixidea_io.clients((err, clients)=>{
+        const connected_client_number = clients.length;
+        console.log('connected_client_number', connected_client_number);
+    })
+}
+
 
 let count = 0;
 const roomname_arr = ['room_a', 'room_b', 'room_c']
